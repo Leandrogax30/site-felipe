@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Felipe Oliveira de Araujo - Advogado Trabalhista</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function abrirRota(modo) {
+      const destino = 'Av. Pres. Vargas, 187, Duque de Caxias - RJ, 25070-330';
+      const destinoEncoded = encodeURIComponent(destino);
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      const openApp = (url) => {
+        window.open(url, '_blank');
+      };
+
+      if (modo === 'waze') {
+        const wazeUrl = `https://waze.com/ul?q=${destinoEncoded}`;
+        openApp(wazeUrl);
+        return;
+      }
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const gmapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${lat},${lon}&destination=${destinoEncoded}`;
+            openApp(gmapsUrl);
+          },
+          () => {
+            const fallbackUrl = `https://www.google.com/maps/dir/?api=1&destination=${destinoEncoded}`;
+            openApp(fallbackUrl);
+          }
+        );
+      } else {
+        const fallbackUrl = `https://www.google.com/maps/dir/?api=1&destination=${destinoEncoded}`;
+        openApp(fallbackUrl);
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-white text-blue-900 font-sans">
+  <!-- Header -->
+  <header class="bg-blue-800 text-white p-6 shadow">
+    <div class="container mx-auto flex justify-between items-center">
+      <div>
+        <h1 class="text-3xl font-bold">Felipe Oliveira de Araujo</h1>
+        <p class="text-lg">Advogado Trabalhista</p>
+      </div>
+      <img src="img/logo-felipe.jpeg" alt="Logo" class="h-20 w-auto">
+    </div>
+  </header>
+
+  <!-- Sobre -->
+  <section class="py-12 bg-blue-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-semibold mb-4">Sobre</h2>
+      <p class="text-base leading-relaxed max-w-3xl">
+        Com sólida experiência na área trabalhista, Felipe Oliveira de Araujo atua na defesa dos direitos dos trabalhadores, com atendimento dedicado e personalizado no Brasil.
+      </p>
+    </div>
+  </section>
+
+  <!-- Serviços -->
+  <section class="py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-semibold mb-6">Serviços</h2>
+      <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <li class="bg-white shadow rounded-xl p-6 border border-blue-200">
+          <h3 class="font-bold text-xl mb-2">Ações Trabalhistas</h3>
+          <p>Representação em processos judiciais para todos os empregados.</p>
+        </li>
+        <li class="bg-white shadow rounded-xl p-6 border border-blue-200">
+          <h3 class="font-bold text-xl mb-2">Consultoria Preventiva</h3>
+          <p>Aconselhamento jurídico para os trabalhadores conhecerem os seus direitos.</p>
+        </li>
+        <li class="bg-white shadow rounded-xl p-6 border border-blue-200">
+          <h3 class="font-bold text-xl mb-2">Rescisões e Verbas</h3>
+          <p>Análise de cálculos rescisórios, férias, FGTS, e demais direitos.</p>
+        </li>
+        <li class="bg-white shadow rounded-xl p-6 border border-blue-200">
+          <h3 class="font-bold text-xl mb-2">Defesas em Reclamatórias</h3>
+          <p>Atuação na defesa dos trabalhadores.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section class="py-12 bg-blue-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl font-semibold mb-6">Contato</h2>
+      <form class="max-w-xl space-y-4">
+        <input type="text" placeholder="Nome" class="w-full border border-blue-300 p-3 rounded">
+        <input type="email" placeholder="E-mail" class="w-full border border-blue-300 p-3 rounded">
+        <textarea placeholder="Mensagem" rows="4" class="w-full border border-blue-300 p-3 rounded"></textarea>
+        <button type="submit" class="bg-blue-800 text-white px-6 py-3 rounded hover:bg-blue-700">Enviar</button>
+      </form>
+
+      <!-- Botão WhatsApp -->
+      <div class="mt-8">
+        <a href="https://wa.me/552179556984" target="_blank" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full shadow">
+          Fale comigo pelo WhatsApp
+        </a>
+      </div>
+
+      <!-- Localização -->
+      <div class="mt-12">
+        <h3 class="text-xl font-semibold mb-4">Localização do Escritório</h3>
+        <p class="mb-4">Av. Pres. Vargas, nº 187, Loja 10<br>Centro - Duque de Caxias, RJ<br>CEP 25070-330</p>
+        <iframe
+          src="https://www.google.com/maps?q=Av.+Pres.+Vargas,+187,+Duque+de+Caxias+-+RJ,+25070-330&output=embed"
+          width="100%" height="300" class="rounded shadow border border-blue-200"></iframe>
+        <div class="mt-4 space-x-4">
+          <button onclick="abrirRota('google')" class="inline-block bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-full shadow">
+            Traçar Rota (Google Maps)
+          </button>
+          <button onclick="abrirRota('waze')" class="inline-block bg-purple-700 hover:bg-purple-800 text-white font-bold py-3 px-6 rounded-full shadow">
+            Traçar Rota (Waze)
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-800 text-white p-6 mt-12 text-center">
+    <p>&copy; 2025 Felipe Oliveira de Araujo - Todos os direitos reservados.</p>
+  </footer>
+</body>
+
+</html>
